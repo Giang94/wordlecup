@@ -1,0 +1,287 @@
+/* --- General --- */
+body {
+  font-family: system-ui;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Game Board --- */
+.row {
+  display: flex;
+  justify-content: center;
+  margin: 6px 0;
+}
+
+.cell {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #ccc;
+  margin: 3px;
+  font-size: 24px;
+  font-weight: bold;
+  background: #f4f1ea;
+  display: flex;            /* use flexbox */
+  justify-content: center;  /* horizontal center */
+  align-items: center;      /* vertical center */
+  border-radius: 4px;       /* optional */
+  text-transform: uppercase;
+}
+
+.correct {
+  background: #6aaa64 !important;
+  color: white;
+}
+
+.present {
+  background: #c9b458 !important;
+  color: white;
+}
+
+.absent {
+  background: #787c7e !important;
+  color: white;
+}
+
+/* --- Keyboard --- */
+/* --- Keyboard Container --- */
+#keyboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* vertical centering */
+  align-items: center;      /* horizontal centering */
+  margin: 0 auto;
+  min-width: 600px;         /* increase base keyboard width */
+  padding-top: 48px;
+}
+
+/* Keyboard rows: make all rows same width */
+.kb-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+  width: 100%;  /* full width of keyboard container */
+  max-width: 600px; /* optional cap for very wide screens */
+}
+
+/* Keys */
+.key {
+  background: #f4f1ea;
+  border: 1px solid #aaa;
+  margin: 2px;
+  padding: 12px 0;     /* taller keys */
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 6px;
+  flex: 1;             /* keys grow equally */
+  text-align: center;
+  min-width: 30px;
+}
+
+/* Wide keys like Enter, Backspace, Clear */
+.key.wide {
+  flex: 1.5;  /* a bit wider than normal keys */
+  font-size: 20px;
+}
+
+/* Last row CLEAR button fills entire row */
+.kb-row.clear-row .key.clear {
+  flex: 1;
+  font-size: 18px;
+}
+
+/* Key coloring */
+.key.correct { background: #6aaa64 !important; color: white; }
+.key.present { background: #c9b458 !important; color: white; }
+.key.absent  { background: #787c7e !important; color: white; }
+
+
+/* --- Error --- */
+.error {
+  height: 20px;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  color: #b00020;
+  font-weight: 600;
+}
+
+/* --- Reset Button --- */
+#reset-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 999;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #aaa;
+  background: #f4f1ea;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#reset-btn:hover {
+  background: #e0dccf;
+}
+
+/* --- Game Over Overlay --- */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.overlay-content {
+  background: #f4f1e7;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  min-width: 300px;
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.overlay button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  background: #f4f1ea;
+}
+
+.overlay button:hover {
+  background: #e0dccf;
+}
+
+/* --- Last row CLEAR button --- */
+.kb-row.clear-row {
+  width: 100%; /* same width as other rows */
+}
+
+.kb-row.clear-row .key.clear {
+  flex: 1; /* occupy full width */
+  min-width: 0;
+}
+
+
+/* Answer cells in overlay */
+#game-over-answer {
+  display: flex;
+  justify-content: center;
+  gap: 4px; /* space between cells */
+  margin: 30px 15px 15px 15px;
+  padding: 0;
+}
+
+.overlay-cell {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  font-size: 18px;
+  border-radius: 6px;
+  display: flex;              /* center content */
+  justify-content: center;
+  align-items: center;
+    border-radius: 6px;
+    background: #6aaa64;
+    color: white;
+    text-transform: uppercase;
+}
+
+.dialog-btn {
+    min-width: 160px;
+}
+
+.layout {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Left & Right panels */
+#left-panel,
+#right-panel {
+  width: 10%;
+  min-width: 120px; /* safety for tiny screens */
+  background: #121213;
+  border-right: 1px solid #3a3a3c;
+  padding: 12px;
+  color: #d7dadc;
+}
+
+/* Remove right border for right panel */
+#right-panel {
+  border-right: none;
+  border-left: 1px solid #3a3a3c;
+}
+
+/* Center area */
+#center-panel {
+  width: 80%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Used words list styling */
+#left-panel h3 {
+  margin-top: 0;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+#recent-games-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#recent-games-list li {
+  text-align: center;
+  margin-bottom: 6px;
+  background: #f4f1ea;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 4px;
+}
+
+.recent-word {
+  letter-spacing: 0.05em;
+}
+
+.recent-result {
+  font-weight: bold;
+}
+
+.recent-result.win {
+  color: #2e7d32; /* green tick */
+}
+
+.recent-result.lose {
+  color: #c62828; /* red x */
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>wordlecup</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="layout">
+	<!-- LEFT PANEL -->
+	<aside id="left-panel">
+		<h4 class="streak"></h4>
+		<h3>Recent games</h3>
+		
+		<ul id="recent-games-list"></ul>
+	</aside>
+	
+	<!-- CENTER GAME AREA -->
+	<main id="center-panel">
+		<h1>wordlecup Offline</h1>
+		<div id="error" class="error"></div>
+		<div id="board"></div>
+		<div id="keyboard"></div>
+	</main>
+	
+	<!-- RIGHT PANEL -->
+	<aside id="right-panel">
+		<!-- future content -->
+	</aside>
+</div>
+
+<div id="game-over-overlay" class="overlay hidden">
+	<div class="overlay-content">
+		<h2 id="game-over-title">Game Over</h2>
+		<p id="game-over-answer"></p>
+		<button class="dialog-btn" id="search-btn">WTF is this?</button>
+		<br/>
+		<button class="dialog-btn" id="restart-btn">New Game</button>
+	</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
