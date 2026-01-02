@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title id="lobbyTitle">Lobby</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="lobby-container">
+        <h1 id="lobbyHeader">Lobby - <span id="roomCode"></span> (<span id="studentCount"></span>)</h1>
+        <div id="studentListContainer">
+            <h2>Students Joined:</h2>
+            <ul id="studentList"></ul>
+        </div>
+        <div id="joinLinkContainer">
+            <h3>Share this link to join:</h3>
+            <input type="text" id="joinLink" readonly style="width:90%" />
+            <button id="copyJoinLinkBtn">Copy</button>
+        </div>
+        <div id="lobbyStatus" style="color:red;"></div>
+        <button id="startClassBtn" style="display:none;">Start Game</button>
+    </div>
+    <script src="lobby.js"></script>
+</body>
+</html>

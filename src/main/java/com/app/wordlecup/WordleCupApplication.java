@@ -1,15 +1,17 @@
 package com.app.wordlecup;
 
-import com.app.wordlecup.repo.WordSeeder;
+import com.app.wordlecup.cup.repo.WordSeeder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.awt.*;
 import java.net.URI;
 
 @SpringBootApplication
+@EnableScheduling
 public class WordleCupApplication {
 
     private final WordSeeder wordSeeder;

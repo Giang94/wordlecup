@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WordleCup Gameplay</title>
+    <link rel="stylesheet" href="wordle.css">
+</head>
+<body>
+<div class="layout">
+    <!-- LEFT PANEL -->
+    <aside id="left-panel">
+        <h3>Students</h3>
+        <ul id="student-list"></ul>
+    </aside>
+    <!-- CENTER GAME AREA -->
+    <main id="center-panel">
+        <h1>WordleCup</h1>
+        <div id="error" class="error"></div>
+        <div id="board"></div>
+        <div id="keyboard"></div>
+    </main>
+    <!-- RIGHT PANEL REMOVED -->
+</div>
+<div id="countdown-overlay" class="overlay hidden">
+    <div class="overlay-content">
+        <h2 id="countdown-title">Game starting in...</h2>
+        <div id="countdown-timer" style="font-size:48px;font-weight:bold;margin:20px;"></div>
+    </div>
+</div>
+<div id="game-over-overlay" class="overlay hidden">
+    <div class="overlay-content">
+        <h2 id="game-over-title">Game Over</h2>
+        <p id="game-over-answer"></p>
+        <button class="dialog-btn" id="search-btn">WTF is this?</button>
+    </div>
+</div>
+<script src="wordle.js"></script>
+</body>
+</html>

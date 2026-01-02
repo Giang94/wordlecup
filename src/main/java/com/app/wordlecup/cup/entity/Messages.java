@@ -1,4 +1,4 @@
-package com.app.wordlecup.model;
+package com.app.wordlecup.cup.entity;
 
 import java.util.List;
 import java.util.Random;

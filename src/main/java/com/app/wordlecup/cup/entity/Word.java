@@ -1,9 +1,13 @@
-package com.app.wordlecup.model;
+package com.app.wordlecup.cup.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "words")
+@Getter
+@Setter
 public class Word {
 
     @Id
@@ -25,32 +29,8 @@ public class Word {
         this.answerWord = answerWord;
     }
 
-    public Word( String word, int answerWord) {
+    public Word(String word, int answerWord) {
         this.word = word;
-        this.answerWord = answerWord;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getWord() {
-        return word;
-    }
-
-    public void setWord(String word) {
-        this.word = word;
-    }
-
-    public int getAnswerWord() {
-        return answerWord;
-    }
-
-    public void setAnswerWord(int answerWord) {
         this.answerWord = answerWord;
     }
 

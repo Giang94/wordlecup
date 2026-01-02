@@ -1,7 +1,7 @@
-package com.app.wordlecup.repo;
+package com.app.wordlecup.cup.repo;
 
-import com.app.wordlecup.model.RecentGame;
-import com.app.wordlecup.model.Word;
+import com.app.wordlecup.cup.entity.RecentClazz;
+import com.app.wordlecup.cup.entity.Word;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 public class WordSeeder {
 
     private final WordRepository wordRepository;
-    private final RecentGameRepository recentGameRepository;
+    private final RecentClazzRepository recentClazzRepository;
 
-    public WordSeeder(WordRepository wordRepository, RecentGameRepository recentGameRepository) {
+    public WordSeeder(WordRepository wordRepository, RecentClazzRepository recentClazzRepository) {
         this.wordRepository = wordRepository;
-        this.recentGameRepository = recentGameRepository;
+        this.recentClazzRepository = recentClazzRepository;
     }
 
     public void seedIfEmpty() {
@@ -114,35 +114,35 @@ public class WordSeeder {
         }
     }
 
-    public void seedRecentGames() {
-        for (int i = 0; i < RecentGame.MAX_RECENT_GAMES; i++) {
+    public void seedRecentClazzs() {
+        for (int i = 0; i < RecentClazz.MAX_RECENT_GAMES; i++) {
             Word answerWords = wordRepository.findRandomWord();
             boolean isWin = new Random().nextBoolean();
 
-            var recentGame = new com.app.wordlecup.model.RecentGame();
-            recentGame.setWord(answerWords);
-            recentGame.setWin(isWin);
-            recentGameRepository.save(recentGame);
-            System.out.println("Seeded recent game with word: " + answerWords.getWord() + ", isWin: " + isWin);
+            var recentClazz = new RecentClazz();
+            recentClazz.setWord(answerWords);
+            recentClazz.setWin(isWin);
+            recentClazzRepository.save(recentClazz);
+            System.out.println("Seeded recent class with word: " + answerWords.getWord() + ", isWin: " + isWin);
         }
     }
 
     @Transactional
     public void rebuildStreaks() {
-        List<RecentGame> games = recentGameRepository.findAllByOrderByUsedAtAsc();
+        List<RecentClazz> clazzes = recentClazzRepository.findAllByOrderByUsedAtAsc();
 
         int streak = 0;
 
-        for (RecentGame game : games) {
-            if (game.isWin()) {
+        for (RecentClazz clazz : clazzes) {
+            if (clazz.isWin()) {
                 streak++;
             } else {
                 streak = 0;
             }
 
-            game.setCurrentStreak(streak);
+            clazz.setCurrentStreak(streak);
         }
 
-        recentGameRepository.saveAll(games);
+        recentClazzRepository.saveAll(clazzes);
     }
 }

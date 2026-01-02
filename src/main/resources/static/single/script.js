@@ -23,8 +23,8 @@ function generateGameId() {
 }
 
 async function startNewGame() {
-  const res = await fetch(`/api/wordlecup/new?gameId=${gameId}`);
-  await res.json(); // confirm backend created game
+  const res = await fetch(`/wordlecup/new?gameId=${gameId}`);
+  await res.json(); // confirm backend created class rom
 
   // Reset row and column
   row = 0;
@@ -167,7 +167,7 @@ async function submitGuess() {
   clearError();
   const guess = board[row].map(c => c.letter).join("").toLowerCase();
 
-  const res = await fetch("/api/wordlecup/guess", {
+  const res = await fetch("/wordlecup/guess", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ gameId, guess })
@@ -185,14 +185,14 @@ async function submitGuess() {
 
   if (data.win) {
     row = ROWS;
-    showGameOver(true, data.answer);
+    showClassRoomOver(true, data.answer);
     return;
   }
 
   row++;
   col = 0;
 
-  if (data.gameOver && data.answer) showGameOver(false, data.answer);
+  if (data.gameOver && data.answer) showClassRoomOver(false, data.answer);
 }
 
 function updateKey(letter, status) {
@@ -229,16 +229,16 @@ function setupResetButton() {
   };
 }
 
-// --- Game Over Overlay ---
+// --- Class Over Overlay ---
 
-function showGameOver(win, answer) {
-  const overlay = document.getElementById("game-over-overlay");
-  const title = document.getElementById("game-over-title");
-  const answerEl = document.getElementById("game-over-answer");
+function showClassRoomOver(win, answer) {
+  const overlay = document.getElementById("class-room-over-overlay");
+  const title = document.getElementById("class-room-over-title");
+  const answerEl = document.getElementById("class-room-over-answer");
   const restartBtn = document.getElementById("restart-btn");
   const searchBtn = document.getElementById("search-btn");
 
-  title.textContent = win ? "🎉 You Win!" : "💀 Game Over";
+  title.textContent = win ? "🎉 You Win!" : "💀 Class Over";
 
   // Clear previous content
   answerEl.innerHTML = "";
@@ -284,7 +284,7 @@ function showGameOver(win, answer) {
 }
 
 async function loadRecentGames() {
-  const res = await fetch("/api/wordlecup/recent-games");
+  const res = await fetch("/wordlecup/recent-games");
   const resp = await res.json();
   const words = resp.recentGames;
   const streak = resp.streak;
@@ -297,7 +297,7 @@ async function loadRecentGames() {
       const result = w.slice(5); // "0" or "1"
 
       const li = document.createElement("li");
-      li.className = "recent-game-item";
+      li.className = "recent-class-room-item";
 
       const text = document.createElement("span");
       text.className = "recent-word";

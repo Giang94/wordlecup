@@ -1,45 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>wordlecup</title>
-	<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Sam-lon-Cup - Welcome</title>
 </head>
 <body>
-
-<div class="layout">
-	<!-- LEFT PANEL -->
-	<aside id="left-panel">
-		<h4 class="streak"></h4>
-		<h3>Recent games</h3>
-		
-		<ul id="recent-games-list"></ul>
-	</aside>
-	
-	<!-- CENTER GAME AREA -->
-	<main id="center-panel">
-		<h1>wordlecup Offline</h1>
-		<div id="error" class="error"></div>
-		<div id="board"></div>
-		<div id="keyboard"></div>
-	</main>
-	
-	<!-- RIGHT PANEL -->
-	<aside id="right-panel">
-		<!-- future content -->
-	</aside>
-</div>
-
-<div id="game-over-overlay" class="overlay hidden">
-	<div class="overlay-content">
-		<h2 id="game-over-title">Game Over</h2>
-		<p id="game-over-answer"></p>
-		<button class="dialog-btn" id="search-btn">WTF is this?</button>
-		<br/>
-		<button class="dialog-btn" id="restart-btn">New Game</button>
-	</div>
-</div>
-
-<script src="script.js"></script>
+    <div class="welcome-container" id="welcomeContainer">
+        <h1>Welcome to Sam-lon-Cup!</h1>
+        <div id="roomJoinSection" style="display:none;">
+            <div id="roomJoinLabel"></div>
+            <input type="text" id="joinUsernameInput" placeholder="Enter your student name" maxlength="20" autocomplete="off">
+            <br><br>
+            <button id="joinRoomBtn" disabled>Join Game</button>
+            <div id="joinRoomError" style="color:red;margin-top:10px;"></div>
+        </div>
+        <div id="roomInvalidSection" style="display:none;">
+            <div style="color:red;">Room Id is invalid.</div>
+            <button id="createRoomBtn2">Create New Room</button>
+        </div>
+        <div id="singleStudentSection">
+            <input type="text" id="usernameInput" placeholder="Enter your username" maxlength="20" autocomplete="off">
+            <br><br>
+            <button id="createRoomBtn" disabled>Create Room</button>
+            <div id="result" style="margin-top:20px;"></div>
+        </div>
+    </div>
+    <script src="index.js"></script>
 </body>
 </html>
